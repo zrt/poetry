@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const int MAXN = 1000 +5;
+const int MAXN = 50000 +5;
 const int mod = 998244353;
 int H[MAXN], P[MAXN], X[MAXN], tot;
 int dep[MAXN], fa[MAXN];

@@ -7,13 +7,14 @@
 using namespace std;
 
 // 注意换行\r
+// x比较大比较好
 
 int main(){
 	srand(time(0));
 	int n,q;
-	n=q=5;
+	n=q=50000;
 	int k;
-	k=2;
+	k=1000000;
 
 	printf("%d %d %d\n",n,q,k);
 
