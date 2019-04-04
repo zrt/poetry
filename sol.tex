@@ -1,0 +1,102 @@
+\documentclass[11pt]{article}
+\usepackage{ctex}
+
+\newcommand\xor{\oplus}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand\p{\pause}
+\newcommand\s{\section}
+\newcommand\subs{\subsection}
+\newcommand\be{\begin}
+\newcommand\en{\end}
+% \newcommand\todo{\ \\\textcolor{red}{\textbf{TODO:}} }
+
+
+% Important!!!
+\title{\huge \heiti 简易版题解}
+
+
+
+\date{\today}
+\author{张若天}
+
+\be{document}
+
+\maketitle
+
+$$\sum_{i \le x}{depth(lca(i,y))^k}$$
+
+\s{首先考虑$k=1$}
+
+求的是$\sum_{i \le x}{depth(lca(i,y))}$，一堆点然后每个点和y求lca然后深度求和。
+
+总体思路是把lca的值摊派到这个点到根的路径上(这个东西也叫树上差分？)，再离线解决所有询问。
+
+维护一个点权sum[]，初始为0，然后将y到根的每个点的点权设为1，然后对于每个点$i\le x$，求从i到根的权值和为上面要求的答案，但这样就$O(n)$了。
+
+(可以反向考虑)，维护一个点权sum[]，初始为0，对于小于等于x的点i，将i到根的路径上所有点的点权++。然后求从y到根的权值和也是上面要求的答案。这种方法求可以按x排序，然后离线，x相等的询问一块问。
+
+可以树链剖分+线段树解决。$O(nlog^2 n)$。或者LCT也行。
+
+\s{然后考虑$k>1$}
+
+k=2的话，按照上述思路想，把$lca^2$的值摊到到根的路径上的话就不是之前的1,1,1,...，变成了1,3,5,7... 
+直接看的话问题变成了线段树区间加等差数列，好像改一下线段树实现也能做（所以给了点部分分）。
+
+但是k>2的时候就比较麻烦了。
+
+基于把$lca^k$摊到从这个点到根的路径上这个思路，实际上对于深度是x的点来说，这个点每次点权增加的值固定是$x^k - (x-1)^k$。
+
+所以实际上，线段树打标记只用记录每个点被算了多少次cnt[]即可。然后实际上的权值和是$sum[i]=cnt[i]*(dep[i]^k - (dep[i]-1)^k)$，每次操作只有cnt[]区间加1，于是预处理线段树上每个区间的$\sum{(dep[i]^k - (dep[i]-1)^k)}$后就可以直接拿线段树维护sum[]。
+
+于是还是之前的树链剖分+线段树解决。$O(nlog^2 n)$。或者LCT也行。
+
+
+\newpage
+
+
+
+
+
+(完)
+
+
+
+\en{document}
+
+
+
+\s*{Prob} %
+
+\emph{.in/.out/.cpp}
+
+\subs*{【问题描述】}
+
+
+\subs*{【输入格式】}
+
+\subs*{【输出格式】}
+
+\subs*{【样例输入】}
+
+\begin{verbatim}
+
+\end{verbatim}
+
+\subs*{【样例输出】}
+
+\begin{verbatim}
+
+\end{verbatim}
+
+
+\subs*{【数据规模和约定】}
+
+对于30\%的数据，满足$n \le 15$；
+
+对于60\%的数据，满足$n \le 1000$；
+
+对于100\%的数据，满足$n \le 100000 ,  1\le a_i \le 10^9$。
+
+\newpage
+
+
