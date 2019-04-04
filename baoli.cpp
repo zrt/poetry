@@ -4,7 +4,8 @@
 
 using namespace std;
 
-const int MAXN = 100 +5;
+const int MAXN = 1000 +5;
+const int mod = 998244353;
 int H[MAXN], P[MAXN], X[MAXN], tot;
 int dep[MAXN], fa[MAXN];
 inline void add(int x,int y){
@@ -30,7 +31,7 @@ int ask(int x,int y){
 	int t = dep[lca(x,y)];
 	int ret = 1;
 	for(int i=0;i<k;i++){
-		ret = ret*t;
+		ret = ret*1LL*t%mod;
 	}
 	return ret;
 }
@@ -48,11 +49,10 @@ int main(){
 		int ans = 0;
 		for(int i=1;i<=x;i++){
 			ans += ask(i,y);
+			ans %= mod;
 		}
 		printf("%d\n",ans);
 	}
-
-
 
 
 	return 0;

@@ -6,14 +6,15 @@
 
 using namespace std;
 
+// 注意换行\r
 
 int main(){
 	srand(time(0));
 	int n,q;
-	n=q=50;
+	n=q=1000;
 	int k;
-	k=3;
-	
+	k=100;
+
 	printf("%d %d %d\n",n,q,k);
 
 	for(int i=2;i<=n;i++){
@@ -21,7 +22,7 @@ int main(){
 	}
 
 	for(int i=1;i<=q;i++){
-		printf("%d %d\n",i, rand()%n+1);
+		printf("%d %d\n",rand()%n+1, rand()%n+1);
 	}
 
 
