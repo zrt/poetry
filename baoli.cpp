@@ -27,12 +27,19 @@ int lca(int x,int y){
 	}
 	return x;
 }
+typedef long long LL;
+LL pow(LL a,LL b,LL p){
+	LL ret = 1%p;
+	while(b){
+		if(b&1) ret =ret *a%p;
+		b>>=1;
+		a=a*a%p;
+	}
+	return ret;
+}
 int ask(int x,int y){
 	int t = dep[lca(x,y)];
-	int ret = 1;
-	for(int i=0;i<k;i++){
-		ret = ret*1LL*t%mod;
-	}
+	int ret = pow(t,k,mod);
 	return ret;
 }
 int main(){
