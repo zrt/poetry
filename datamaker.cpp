@@ -11,9 +11,9 @@ using namespace std;
 int main(){
 	srand(time(0));
 	int n,q;
-	n=q=1000;
+	n=q=5;
 	int k;
-	k=100;
+	k=2;
 
 	printf("%d %d %d\n",n,q,k);
 

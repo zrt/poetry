@@ -95,16 +95,47 @@ $depth(x)$表示$x$节点的深度，根节点的深度为$1$。
 \subs*{【样例输入】}
 
 \begin{verbatim}
-2 1 3
+5 5 2
 1
-2 2
+1
+3
+2
+4 3
+5 4
+2 5
+1 2
+3 2
 \end{verbatim}
 
 \subs*{【样例输出】}
 
 \begin{verbatim}
-9
+10
+16
+5
+1
+6
 \end{verbatim}
+
+
+\subs*{【样例解释】}
+
+树大概是一个这样的结构：
+\begin{verbatim}
+1
+|\
+2 3 - 4
+|
+5
+\end{verbatim}
+
+每个点的$depth$分别为 $1, 2, 2, 3, 3$。
+
+第一个询问$x=4, y=3$：
+$lca(1,3) = 1$, $lca(2,3) = 1$, $lca(3,3) = 3$, $lca(4,3) = 3$；
+$depth(1)^2 + depth(1)^2 + depth(3)^2 + depth(3)^2 = 1+1+4+4 = 10$。
+
+所以输出为10。
 
 \subs*{【数据规模和约定】}
 
